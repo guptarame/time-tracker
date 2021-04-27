@@ -7,7 +7,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'THis is Build step'
-                git credentialsId: '1f1e0701-9e2a-4e7b-8ed3-a7b04a8a0c80', url: 'https://github.com/sdakinedi/time-tracker.git'
+                git branch:'develop' credentialsId: '1f1e0701-9e2a-4e7b-8ed3-a7b04a8a0c80', url: 'https://github.com/sdakinedi/time-tracker.git'
             }
         }
         

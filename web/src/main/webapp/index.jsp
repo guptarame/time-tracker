@@ -1,19 +1,37 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Jason
-  Date: 6/22/2015
-  Time: 8:47 PM
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+l;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Super Simple Example Webpage</title>
+    <title>SET SERIES: DEVOPS CI/CD Training...</title>
 </head>
 <body>
   <h1>Super Simple Example Web Page</h1>
-  <p>
-    This is a very simple example web page on a JSP.
-  </p>
+  <h1>WELCOME to SET SERIES: DEVOPS CI/CD Training...</h1>
+	<br>
+	<h2>Module 2 Session 2 : Pipelines-as-code and Jenkinsfile</h2>
+	<br>
+	<h3>
+	Learning Objectives for Today:
+	<br>
+	################################
+	<br>
+		Creating Pipelines using UI<br>
+		Creating Pipelines using Script<br>
+		Create Elegant Pipelines Using Jenkins Blue Ocean Plugin
+	<br>
+	<br>
+	<br>#######################################################################
+		<br>####### Deployed with Pipeline-as-code using Jenkinsfile...########
+		<br>#####################################################################
+	
+	
+		
+	</h3>
+	
+	<br><br><br>
+	<h3>Your Instructor:</h3><br>
+	Name: SATYA PRASAD DAKINEDI
+	<br>
+	EMAIL: satyaprasad_dakinedi@epam.com
+	<br>
 </body>
 </html>

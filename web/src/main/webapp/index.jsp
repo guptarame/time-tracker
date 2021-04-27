@@ -1,10 +1,9 @@
-l;charset=UTF-8" language="java" %>
+
 <html>
 <head>
     <title>SET SERIES: DEVOPS CI/CD Training...</title>
 </head>
 <body>
-  <h1>Super Simple Example Web Page</h1>
   <h1>WELCOME to SET SERIES: DEVOPS CI/CD Training...</h1>
 	<br>
 	<h2>Module 2 Session 2 : Pipelines-as-code and Jenkinsfile</h2>
@@ -20,11 +19,9 @@ l;charset=UTF-8" language="java" %>
 	<br>
 	<br>
 	<br>#######################################################################
-		<br>####### Deployed with Pipeline-as-code using Jenkinsfile...########
-		<br>#####################################################################
+	<br>####### Deployed with Pipeline-as-code using Jenkinsfile...########
+	<br>#####################################################################
 	
-	
-		
 	</h3>
 	
 	<br><br><br>

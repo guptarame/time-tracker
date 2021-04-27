@@ -33,8 +33,14 @@ pipeline {
                  archiveArtifacts artifacts: '**/*.war', followSymlinks: false
             }
         }
-        
-        
-        
+		
+		stage('Deploy') {
+            steps {
+                echo 'This will Package'
+                 deploy adapters: [tomcat9(credentialsId: 'TOMCAT_DEPLOYER', path: '', url: 'http://18.156.163.149:8090/')], contextPath: null, war: '**/*.war'
+            }
+        }
+		
+
     }
 }

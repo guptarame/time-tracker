@@ -14,7 +14,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'This will test'
-                 sh 'mvn clean test'
+                 bat 'mvn clean test'
             }
         }
         
@@ -29,7 +29,7 @@ pipeline {
         stage('Package') {
             steps {
                 echo 'This will Package'
-                 sh 'mvn package'
+                 bat 'mvn package'
                  archiveArtifacts artifacts: '**/*.war', followSymlinks: false
             }
         }

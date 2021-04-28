@@ -1,0 +1,31 @@
+pipeline {
+    agent any
+    tools {
+        maven "maven3.8.1"
+    }
+    stages {
+        stage('Build') {
+            steps {
+                echo 'THis is Build step'
+                git branch: 'feature1', credentialsId: 'GithubCredentials', url: 'https://github.com/sdakinedi/time-tracker.git'
+            }
+        }
+        
+        stage('Test') {
+            steps {
+                echo 'This will test'
+                 sh 'mvn clean test'
+            }
+        }
+        
+        stage('Results') {
+            steps {
+                echo 'This will show Results'
+                 junit '**/*.xml'
+                 
+            }
+        }
+        
+
+    }
+}

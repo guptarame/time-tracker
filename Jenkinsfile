@@ -39,12 +39,12 @@ pipeline {
             }
         }
 		
-		stage('Deploy') {
-            steps {
-                echo 'This will Package'
-                 deploy adapters: [tomcat9(credentialsId: 'TOMCAT_DEPLOYER', path: '', url: 'http://3.66.170.119:8090//')], contextPath: null, war: '**/*.war'
-            }
-        }
+       //stage('Deploy') {
+       //     steps {
+       //        echo 'This will Package'
+       //          deploy adapters: [tomcat9(credentialsId: 'TOMCAT_DEPLOYER', path: '', url: //'http://3.66.170.119:8090//')], contextPath: null, war: '**/*.war'
+       //     }
+       // }
 		
 
     }

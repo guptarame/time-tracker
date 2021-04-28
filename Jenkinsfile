@@ -35,16 +35,16 @@ pipeline {
 		
 		stage('Upload the Binary') {
             steps {
-               nexusPublisher nexusInstanceId: 'nexus-on-ec2', nexusRepositoryId: 'Jenkins-ci-maven-nexus-repo', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: 'web/target/time-tracker-web-0.5.0-SNAPSHOT.war']], mavenCoordinate: [artifactId: 'webapp', groupId: 'com.mycompany', packaging: 'war', version: '3.0']]]
+               nexusPublisher nexusInstanceId: 'nexus-on-ec2', nexusRepositoryId: 'Jenkins-ci-maven-nexus-repo', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: 'web/target/time-tracker-web-0.5.0-SNAPSHOT.war']], mavenCoordinate: [artifactId: 'webapp', groupId: 'com.mycompany', packaging: 'war', version: '1.0']]]
             }
         }
 		
-       //stage('Deploy') {
-       //     steps {
-       //        echo 'This will Package'
-       //          deploy adapters: [tomcat9(credentialsId: 'TOMCAT_DEPLOYER', path: '', url: //'http://3.66.170.119:8090//')], contextPath: null, war: '**/*.war'
-       //     }
-       // }
+       stage('Deploy') {
+            steps {
+               echo 'This will Package'
+                 deploy adapters: [tomcat9(credentialsId: 'TOMCAT_DEPLOYER', path: '', url: 'http://3.127.229.79:8090')], contextPath: null, war: '**/*.war'
+           }
+        }
 		
 
     }

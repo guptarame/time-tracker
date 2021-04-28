@@ -7,17 +7,16 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'THis is Build step'
-                git branch: 'develop', credentialsId: '1f1e0701-9e2a-4e7b-8ed3-a7b04a8a0c80', url: 'https://github.com/sdakinedi/time-tracker.git'
+                git branch: 'develop', credentialsId: 'GithubCredentials', url: 'https://github.com/sdakinedi/time-tracker.git'
             }
         }
         
-        stage('Test') {
+        stage('Integration Tests') {
             steps {
                 echo 'This will test'
-                 bat 'mvn clean test'
+                 sh 'mvn test'
             }
-        }
-        
+        }  
         stage('Results') {
             steps {
                 echo 'This will show Results'
@@ -29,15 +28,21 @@ pipeline {
         stage('Package') {
             steps {
                 echo 'This will Package'
-                 bat 'mvn package'
+                 sh 'mvn package'
                  archiveArtifacts artifacts: '**/*.war', followSymlinks: false
+            }
+        }
+		
+		stage('Upload the Binary') {
+            steps {
+               nexusPublisher nexusInstanceId: 'nexus-on-ec2', nexusRepositoryId: 'Jenkins-ci-maven-nexus-repo', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: 'web/target/time-tracker-web-0.5.0-SNAPSHOT.war']], mavenCoordinate: [artifactId: 'webapp', groupId: 'com.mycompany', packaging: 'war', version: '3.0']]]
             }
         }
 		
 		stage('Deploy') {
             steps {
                 echo 'This will Package'
-                 deploy adapters: [tomcat9(credentialsId: 'TOMCAT_DEPLOYER', path: '', url: 'http://18.156.163.149:8090/')], contextPath: null, war: '**/*.war'
+                 deploy adapters: [tomcat9(credentialsId: 'TOMCAT_DEPLOYER', path: '', url: 'http://3.66.170.119:8090//')], contextPath: null, war: '**/*.war'
             }
         }
 		

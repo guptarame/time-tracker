@@ -7,14 +7,15 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'THis is Build step'
-                git branch: 'feature2', credentialsId: 'GithubCredentials', url: 'https://github.com/sdakinedi/time-tracker.git'
+                git branch: 'feature1', credentialsId: 'GithubCredentials', url: 'https://github.com/sdakinedi/time-tracker.git'
             }
         }
         
-        stage('Test') {
+        stage('Unit Tests') {
             steps {
-                echo 'This will test'
-                 sh 'mvn test'
+                echo 'This will perform unit test'
+                 sh 'mvn -Dtest=TrackerTest#testAnotherEntry3 test -pl core'
+				 sh 'mvn -Dtest=TrackerTest#testAnotherEntry4 test -pl core'
             }
         }
         

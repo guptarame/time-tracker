@@ -11,7 +11,7 @@
 	<h3>
 	<br>
 	<br>#######################################################################
-	<br  CI Pipeline Use Case..... 
+	<br   CI Pipeline Use Case..... 
 	<br> Developer's pipeline -> feature branch
 	<br>Build -> mvn clean compile -> 'mvn -Dtest=TrackerTest#<TestDeveloped> test -pl core' -> jUnit Results
 	<br>

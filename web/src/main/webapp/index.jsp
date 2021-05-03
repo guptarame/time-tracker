@@ -6,9 +6,9 @@
 <body>
   <h1>WELCOME to SET SERIES: DEVOPS CI/CD Training...</h1>
 	<br>
-	<h2>Module 2 Session 2 : Pipelines-as-code and Jenkinsfile</h2>
+	<h2>Module 3 Session 2 : CI Pipeline</h2>
 	<br>
-	<h3>
+	<h3> This is deployed through Jenkins...
 	<br>
 	<br>#######################################################################
 	<br     CI Pipeline Use Case..... 

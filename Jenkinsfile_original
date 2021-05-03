@@ -33,16 +33,22 @@ pipeline {
             }
         }
 		
-		stage('Upload the Binary') {
+		stage('Upload the Binary to NEXUS') {
             steps {
                nexusPublisher nexusInstanceId: 'nexus-on-ec2', nexusRepositoryId: 'Jenkins-ci-maven-nexus-repo', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: 'web/target/webapp-0.5.0-SNAPSHOT.war']], mavenCoordinate: [artifactId: 'webapp', groupId: 'com.mycompany', packaging: 'war', version: '3.0']]]
+            }
+        }
+		
+		stage('Pull from Nexus') {
+            steps {
+               sh 'wget --user=admin --password=admin123 http://18.157.163.53:8081/repository/Jenkins-ci-maven-nexus-repo/com/mycompany/webapp/3.0/webapp-3.0.war'
             }
         }
 		
        stage('Deploy') {
             steps {
                echo 'This will Package'
-                 deploy adapters: [tomcat9(credentialsId: 'TOMCAT_DEPLOYER', path: '', url: 'http://35.157.189.28:8090/')], contextPath: null, war: '**/*.war'
+                 deploy adapters: [tomcat9(credentialsId: 'TOMCAT_DEPLOYER', path: '', url: 'http://18.198.25.211:8090/')], contextPath: null, war: 'webapp-3.0.war'
            }
         }
 		

@@ -8,7 +8,8 @@
 	<br>
 	<h2>Module 3 Session 2 : CI Pipeline</h2>
 	<br>
-	<h3> This is deployed through Jenkins...
+	<h3> This .war file is pulled from NEXUS server first and then deployed on to tomcat..
+	<br> This step is also integrated with SLACK
 	<br>
 	<br>#######################################################################
 	<br     CI Pipeline Use Case..... 

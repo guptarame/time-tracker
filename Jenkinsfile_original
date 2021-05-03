@@ -41,16 +41,23 @@ pipeline {
 		
 		stage('Pull from Nexus') {
             steps {
-               sh 'wget --user=admin --password=admin123 http://18.157.163.53:8081/repository/Jenkins-ci-maven-nexus-repo/com/mycompany/webapp/3.0/webapp-3.0.war'
+               sh 'wget --user=admin --password=admin123 http://35.157.219.41:8081/repository/Jenkins-ci-maven-nexus-repo/com/mycompany/webapp/3.0/webapp-3.0.war'
             }
         }
 		
-       stage('Deploy') {
+        stage('Deploy') {
             steps {
                echo 'This will Package'
-                 deploy adapters: [tomcat9(credentialsId: 'TOMCAT_DEPLOYER', path: '', url: 'http://18.198.25.211:8090/')], contextPath: null, war: 'webapp-3.0.war'
+                 deploy adapters: [tomcat9(credentialsId: 'TOMCAT_DEPLOYER', path: '', url: 'http://54.93.125.238:8090/')], contextPath: null, war: 'webapp-3.0.war'
            }
         }
+		
+	   stage('Slack Notification') {
+            steps {
+               slackSend channel: 'cicd-training', color: 'slackSend color: "#439FE0", message: "Build Started: ${env.JOB_NAME} ${env.BUILD_NUMBER}"', message: 'slackSend "started ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"', teamDomain: 'jenkins-cicd-training', tokenCredentialId: 'Jenkins-Slack-token'
+           }
+        }
+		
 		
 
     }

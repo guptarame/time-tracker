@@ -61,7 +61,7 @@ pipeline {
 		
 	   stage('Slack Notification') {
             steps {
-               slackSend channel: 'cicd-training', color: 'slackSend color: "#439FE0", message: "Build Started: ${env.JOB_NAME} ${env.BUILD_NUMBER}"', message: 'slackSend "started ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"', teamDomain: 'jenkins-cicd-training', tokenCredentialId: 'Jenkins-Slack-token'
+               slackSend channel: 'cicd-training', message: 'started ${env.JOB_NAME} ${env.BUILD_NUMBER} ', teamDomain: 'jenkins-cicd-training', tokenCredentialId: 'Jenkins-Slack-token'
            }
         }
 		

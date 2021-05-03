@@ -10,6 +10,13 @@ pipeline {
                 git branch: 'develop', credentialsId: 'GithubCredentials', url: 'https://github.com/sdakinedi/time-tracker.git'
             }
         }
+		
+		stage('Compile') {
+            steps {
+                 echo 'This will Compile'
+                 sh 'mvn clean compile'
+            }
+        }
         
         stage('Integration Tests') {
             steps {

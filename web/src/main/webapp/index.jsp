@@ -8,7 +8,7 @@
 	<br>
 	<h2>Module 3 Session 2 : CI Pipeline</h2>
 	<br>
-	<h3> This .war file is pulled from NEXUS server first and then deployed on to tomcat..
+	<h3> This is deployed on to tomcat using pull from Nexus and integrated with SLACK..
 	<br> This step is also integrated with SLACK
 	<br>
 	<br>#######################################################################

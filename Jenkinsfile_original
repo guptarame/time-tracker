@@ -52,7 +52,6 @@ pipeline {
             }
         }
 		
-		
         stage('Deploy') {
             steps {
                echo 'This will Package'
@@ -60,6 +59,11 @@ pipeline {
            }
         }
 		
+		stage('Slack Notification') {
+            steps {
+               slackSend channel: 'cicd-training', message: 'For your information: Build Deploye:', teamDomain: 'jenkins-cicd-training', tokenCredentialId: 'Jenkins-Slack-token1
+           }
+        }
 
     }
 }

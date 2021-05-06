@@ -6,25 +6,17 @@
 <body>
   <h1>WELCOME to SET SERIES: DEVOPS CI/CD Training...</h1>
 	<br>
-	<h2>Module 3 Session 2 : CI Pipeline</h2>
+	<h2>Module 4 Session 1 : Continuous Inspection using Jenkins</h2>
+	<h3>         1. Static Code Analysis
+	<br>         2. Quality thresholds using tools like PMD, Checkstyle, FindBugs
+	<br>         3. Static Collector Plugin
+	<br>         4. Determine the Quality and health of Jenkins jobs
+	<br>         5. Create Quality Gates using Warnings Next Generations Plugin
 	<br>
-	<h3> This is deployed on to tomcat using pull from Nexus and integrated with SLACK..
-	<br> This step is also integrated with SLACK
 	<br>
-	<br>#######################################################################
-	<br     CI Pipeline Use Case..... 
-	<br> Developer's pipeline -> feature branch
-	<br>Build -> mvn clean compile -> 'mvn -Dtest=TrackerTest#<TestDeveloped> test -pl core' -> jUnit Results
 	<br>
-	<br>CI Pipeline -> integration/develop branch
-    <br> pollscm -> mvn clean compile -> mvn integration tests -> Package -> Results/Archive Artifacts -> Upload to Nexus -> Deploy to Tomcat (optional)
-	<br>#####################################################################
-
-	<br>As part of CI pipeline setup....
-	
 	</h3>
-	
-	<br><br><br>
+	<br><br>
 	<h3>Your Instructor:</h3><br>
 	Name: SATYA PRASAD DAKINEDI
 	<br>

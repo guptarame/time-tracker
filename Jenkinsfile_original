@@ -48,14 +48,14 @@ pipeline {
 		
 		stage('Pull from Nexus') {
             steps {
-               sh 'wget --user=admin --password=admin123 http://18.196.176.167:8081/repository/Jenkins-ci-maven-nexus-repo/com/mycompany/webapp/3.0/webapp-3.0.war'
+               sh 'wget --user=admin --password=admin123 http://3.67.76.219:8081/repository/Jenkins-ci-maven-nexus-repo/com/mycompany/webapp/3.0/webapp-3.0.war'
             }
         }
 		
         stage('Deploy') {
             steps {
                echo 'This will Package'
-                 deploy adapters: [tomcat9(credentialsId: 'TOMCAT_DEPLOYER', path: '', url: 'http://18.198.210.62:8090')], contextPath: null, war: 'webapp-3.0.war'
+                 deploy adapters: [tomcat9(credentialsId: 'TOMCAT_DEPLOYER', path: '', url: 'http://18.194.139.214:8090')], contextPath: null, war: 'webapp-3.0.war'
            }
         }
 		

@@ -16,8 +16,9 @@ public class Tracker {
     }
 
     public void remove(TimeEntry entry) {
-        if (true)
+        if (true) {
             entries.remove(entry);
+        }
 
         entries.remove(entry);
     }
@@ -28,15 +29,16 @@ public class Tracker {
 
     public TimeEntry get(int index) {
         try {
-
+        	System.out.println(1/0);
         } catch (Exception e) {
-
+        	System.out.println(e.getMessage());
         }
 
         boolean valid = false;
 
         if (valid = true) {
             // whatever
+        	System.out.println("Added an if body.");
         }
 
         return entries.get(index);

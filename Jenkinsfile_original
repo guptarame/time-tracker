@@ -17,6 +17,22 @@ pipeline {
                  sh 'mvn clean compile'
             }
         }
+		
+		stage('Package') {
+            steps {
+                echo 'This will Package'
+                 sh 'mvn package checkstyle:checkstyle findbugs:findbugs pmd:pmd'
+                 archiveArtifacts artifacts: '**/*.war', followSymlinks: false
+            }
+        }
+		
+		
+		stage('Static Analysis using Warning plugin') {
+            steps {
+                echo 'This will run Static Analysis'
+                 recordIssues healthy: 20, qualityGates: [[threshold: 100, type: 'TOTAL', unstable: false], [threshold: 40, type: 'TOTAL', unstable: true]], tools: [findBugs(useRankAsPriority: true), checkStyle(), pmdParser()], unhealthy: 80
+            }
+        }
         
         stage('Integration Tests') {
             steps {
@@ -31,23 +47,34 @@ pipeline {
                  
             }
         }
-        
-        stage('Package') {
+		
+		stage('Copy Artifacts and Dockerfile to Dockerhost') {
             steps {
-                echo 'This will Package'
-                 sh 'mvn package checkstyle:checkstyle findbugs:findbugs pmd:pmd'
-                 archiveArtifacts artifacts: '**/*.war', followSymlinks: false
+                sshPublisher(publishers: [sshPublisherDesc(configName: 'DockerHost', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: 'Dockerfile')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+
+
+
+				sshPublisher(publishers: [sshPublisherDesc(configName: 'DockerHost', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: 'web/target', sourceFiles: 'web/target/webapp-0.5.0-SNAPSHOT.war')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+
+                 
             }
         }
 		
-		stage('Static Analysis using Warning plugin') {
+		stage('Deploy to Tomcat Docker Container') {
             steps {
-                echo 'This will run Static Analysis'
-                 recordIssues healthy: 20, qualityGates: [[threshold: 100, type: 'TOTAL', unstable: false], [threshold: 40, type: 'TOTAL', unstable: true]], tools: [findBugs(useRankAsPriority: true), checkStyle(), pmdParser()], unhealthy: 80
+                sshPublisher(publishers: [sshPublisherDesc(configName: 'DockerHost', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '''docker stop -f $(docker ps -qa);
+				docker rm -f $(docker ps -qa);
+				docker rmi mytomcat:1.0
+				cd /opt/docker;
+				docker build -t mytomcat:1.0 .''', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: 'web/target', sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+
+			sshPublisher(publishers: [sshPublisherDesc(configName: 'DockerHost', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '''docker run -d  -p 8090:8080 mytomcat:1.0
+			docker run -d  -p 8091:8080 mytomcat:1.0
+			docker run -d  -p 8092:8080 mytomcat:1.0''', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: 'web/target', sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+
+                 
             }
         }
-		
-		
 
     }
 }

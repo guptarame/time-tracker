@@ -63,10 +63,10 @@ pipeline {
 		stage('Build Docker-tomcat image and push to Repo') {
             steps {
                 sshPublisher(publishers: [sshPublisherDesc(configName: 'DockerHost', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '''cd /opt/docker;
-				docker build -t mytomcat:1.0 .
+				docker build -t mytomcat:3.0 .
 				docker images;
-				docker tag mytomcat:1.0 satyaprasad3186/mytomcat:1.0
-				docker push satyaprasad3186/mytomcat:1.0''', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+				docker tag mytomcat:3.0 satyaprasad3186/mytomcat:3.0
+				docker push satyaprasad3186/mytomcat:3.0''', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
 
                  
             }
@@ -74,8 +74,8 @@ pipeline {
 		
 		stage('Pull from Docker Registry and run TOMCAT CONTAINER') {
             steps {
-                sshPublisher(publishers: [sshPublisherDesc(configName: 'DockerHost', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '''docker pull satyaprasad3186/mytomcat:1.0 ;
-				docker run -d  -p 8090:8080 satyaprasad3186/mytomcat:1.0 ;''', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])                
+                sshPublisher(publishers: [sshPublisherDesc(configName: 'DockerHost', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '''docker pull satyaprasad3186/mytomcat:3.0 ;
+				docker run -d  -p 8092:8080 satyaprasad3186/mytomcat:3.0 ;''', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])                
             }
         }
 

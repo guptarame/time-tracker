@@ -1,0 +1,17 @@
+---
+     - hosts: dockerhosts
+       become: true
+       become_user: ansadmin
+       vars:
+          tag: "4.0"
+          ports: "8091"
+       tasks:
+        - name: build the docker image
+          shell: cd /opt/docker;
+                 docker build -t mytomcat:{{tag}} .
+        - name: tag the image
+          shell: docker tag mytomcat:{{tag}} satyaprasad3186/mytomcat:{{tag}}
+        - name: push the image to docker registry
+          shell: docker push satyaprasad3186/mytomcat:{{tag}}
+        - name: pull and create docker container
+          shell: docker run -d  -p {{ports}}:8080 mytomcat:{{tag}}

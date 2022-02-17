@@ -1,20 +1,18 @@
 
 <html>
 <head>
-    <title>SET SERIES: DEVOPS CI/CD Training...</title>
+    <title>SET SERIES: Ansible Training...</title>
 </head>
 <body>
-  <h1>WELCOME to SET SERIES: DEVOPS CI/CD Training...</h1>
+  <h1>WELCOME to SET SERIES: Ansible Training Training...</h1>
 	<br>
-	<h2>Module 5 Session 2 : Continuous Delivery/Deployment Pipeline</h2>
+	<h2>Module 6 : Ansible in Automation</h2>
 	<h3>        
-	<br>   1. Deploy the containers on host with Ansible server
-	<br>   2. Deploy the custom image on K8S server and check Service
+	<br>   1. Build and Package the software into *.war file using Jenkins 
+	<br>   2. Deploy the *.war file using Ansible on your test servers
 	</h3>
-	<br><br>
-	<h3> 	
-		   This is deployed as version 5.0 of webapp by Ansible
-	</h3>     
+	<br>
+	<br>
 	<h3>Your Instructor:</h3><br>
 	Name: SATYA PRASAD DAKINEDI
 	<br>

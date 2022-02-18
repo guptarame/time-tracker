@@ -1,4 +1,3 @@
-
 <html>
 <head>
     <title>SET SERIES: Ansible Training...</title>
@@ -10,6 +9,7 @@
 	<h3>        
 	<br>   1. Build and Package the software into *.war file using Jenkins 
 	<br>   2. Deploy the *.war file using Ansible on your test servers
+	<br>   3. Deployment is successful...
 	</h3>
 	<br>
 	<br>

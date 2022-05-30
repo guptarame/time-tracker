@@ -11,7 +11,7 @@ pipeline {
     stage('test') {
       steps {
         sh 'mvn -Dtest=TrackerTest#testAdd test -pl core'
-        withMaven(jdk: 'jdk1.8.0_312', maven: 'Maven3.0.5')
+        withMaven(jdk: 'jdk1.8.0_312', maven: 'Maven3.6.1')
       }
     }
 

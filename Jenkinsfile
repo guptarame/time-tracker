@@ -10,7 +10,7 @@ pipeline {
 
     stage('test') {
       steps {
-        sh 'mvn -Dtest=TrackerTest#testAnotherEntry2 test -pl core'
+        sh 'mvn -Dtest=TrackerTest#testAnotherEntry2 test -p1 core'
       }
     }
 

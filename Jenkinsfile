@@ -11,6 +11,7 @@ pipeline {
     stage('test') {
       steps {
         sh 'mvn -Dtest=TrackerTest#testadd test -pl core'
+        withMaven(jdk: 'jdk1.8.312', maven: 'Maven3.0.5')
       }
     }
 

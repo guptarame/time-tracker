@@ -8,15 +8,26 @@ pipeline {
       }
     }
 
-    stage('test') {
-      steps {
-        sh 'mvn -Dtest=TrackerTest#testAdd test -pl core'
+    stage('Test') {
+      parallel {
+        stage('Test') {
+          steps {
+            sh 'mvn test'
+          }
+        }
+
+        stage('Regression Test') {
+          steps {
+            sh 'sh \'mvn -Dtest=TrackerTest#testAdd test -pl core\''
+          }
+        }
+
       }
     }
 
-    stage('integration test') {
+    stage('Package') {
       steps {
-        sh 'mvn test'
+        sh 'mvn package'
       }
     }
 

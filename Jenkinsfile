@@ -24,7 +24,7 @@ pipeline {
 
         stage('Regression Test') {
           steps {
-            sh 'sh \'mvn -Dtest=TrackerTest#testAdd test -pl core\''
+            sh 'sh mvn -Dtest=TrackerTest#testAdd test -pl core'
           }
         }
 

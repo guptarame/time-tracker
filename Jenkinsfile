@@ -38,4 +38,7 @@ pipeline {
     }
 
   }
+  environment {
+    maven = 'maven3.0.5'
+  }
 }

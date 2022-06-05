@@ -14,23 +14,23 @@ pipeline {
       }
     }
 
-    
+    stage('parallel execution'){
       parallel {
         stage('Regression Test') {
           steps {
-            sh 'mvn -Dtest=TrackerTest#testAdd test -pl core'
+            sh 'mvn -Dtest=TrackerTest#testMe test -pl core'
           }
         }
 
         stage('Test') {
           steps {
-            sh 'mvn test'
+            sh 'mvn -Dtest=TrackerTest#testAdd test -pl core'
           }
         }
 
       }
     
-
+    }
     stage('Package') {
       steps {
         sh 'mvn package'

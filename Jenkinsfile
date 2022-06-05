@@ -14,7 +14,7 @@ pipeline {
       }
     }
 
-    stage('parallel execution'){
+    stage('parallel execution') {
       parallel {
         stage('Regression Test') {
           steps {
@@ -29,8 +29,8 @@ pipeline {
         }
 
       }
-    
     }
+
     stage('Package') {
       steps {
         sh 'mvn package'

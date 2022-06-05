@@ -8,11 +8,37 @@ pipeline {
       }
     }
 
-    stage('test') {
+    stage('Compile') {
       steps {
-        sh 'mvn -Dtest=TrackerTest#testAnotherEntry2 test -pl core'
+        sh 'mvn compile'
       }
     }
 
+    
+      parallel {
+        stage('Regression Test') {
+          steps {
+            sh 'mvn -Dtest=TrackerTest#testAdd test -pl core'
+          }
+        }
+
+        stage('Test') {
+          steps {
+            sh 'mvn test'
+          }
+        }
+
+      }
+    
+
+    stage('Package') {
+      steps {
+        sh 'mvn package'
+      }
+    }
+
+  }
+  environment {
+    maven = 'maven3.0.5'
   }
 }

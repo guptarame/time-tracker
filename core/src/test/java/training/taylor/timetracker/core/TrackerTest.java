@@ -20,11 +20,13 @@ public class TrackerTest {
 
     @Test
     public void testMe() {
+        System.out.println("testme test passed");
         assertNotNull(tracker);
     }
 
     @Test
     public void testAdd() {
+        System.out.println("testadd  test passed");
         TimeEntry entry = new TimeEntry();
         entry.setDescription("Entry Test");
         entry.setRate(80.0f);

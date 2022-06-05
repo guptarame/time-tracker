@@ -15,14 +15,19 @@ pipeline {
     }
 
     stage('test me') {
-      steps {
-        sh 'mvn -Dtest=TrackerTest#testMe test -pl core'
-      }
-    }
+      parallel {
+        stage('test me') {
+          steps {
+            sh 'mvn -Dtest=TrackerTest#testMe test -pl core'
+          }
+        }
 
-    stage('test add') {
-      steps {
-        sh 'mvn -Dtest=TrackerTest#testAdd test -pl core'
+        stage('test add') {
+          steps {
+            sh 'mvn -Dtest=TrackerTest#testAdd test -pl core'
+          }
+        }
+
       }
     }
 

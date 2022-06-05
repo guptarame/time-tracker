@@ -14,7 +14,7 @@ pipeline {
       }
     }
 
-    stage('Regression Test') {
+    
       parallel {
         stage('Regression Test') {
           steps {
@@ -29,7 +29,7 @@ pipeline {
         }
 
       }
-    }
+    
 
     stage('Package') {
       steps {

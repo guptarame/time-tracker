@@ -15,8 +15,19 @@ pipeline {
     }
 
     stage('Regression Test') {
-      steps {
-        sh 'mvn -Dtest=TrackerTest#testMe test -pl core'
+      parallel {
+        stage('Regression Test') {
+          steps {
+            sh 'mvn -Dtest=TrackerTest#testMe test -pl core'
+          }
+        }
+
+        stage('test2') {
+          steps {
+            sh 'mvn -Dtest=TrackerTest#testAdd test -pl core'
+          }
+        }
+
       }
     }
 

@@ -18,7 +18,7 @@ pipeline {
       parallel {
         stage('test me') {
           steps {
-            sh 'mvn -Dtest=TrackerTest#testMe test -pl core'
+            sh 'mvn -Dtest=TrackerTest test -pl core'
           }
         }
 

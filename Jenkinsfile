@@ -20,26 +20,15 @@ pipeline {
       }
     }
 
-    stage('Package') {
-      parallel {
-        stage('Package') {
-          steps {
-            sh 'mvn package'
-          }
-        }
-
-        stage('test') {
-          steps {
-            sh 'mvn -Dtest=TrackerTest#testAdd test -pl core'
-          }
-        }
-
+    stage('test') {
+      steps {
+        sh 'mvn -Dtest=TrackerTest#testAdd test -pl core'
       }
     }
 
-    stage('') {
+    stage('package') {
       steps {
-        echo 'aa'
+        sh 'mvn package'
       }
     }
 

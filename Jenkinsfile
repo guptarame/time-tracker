@@ -22,9 +22,9 @@ pipeline {
           }
         }
 
-        stage('test add') {
+        stage('test me core config') {
           steps {
-            sh 'mvn -Dtest=TrackerTest#testAdd test -pl core'
+            sh 'mvn -Dtest=TrackerCoreConfigTest#testMe test -pl core'
           }
         }
 

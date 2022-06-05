@@ -23,6 +23,7 @@ public class TrackerCoreConfigTest {
 
     @Test
     public void testMe() {
+        System.out.println("tracker core config test me test");
         assertNotNull(entries);
     }
 

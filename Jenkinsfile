@@ -17,11 +17,11 @@ pipeline {
       }
     }
 
-    //stage('Regression Test') {
-    //  steps {
-    //    sh 'mvn -Dtest=TrackerTest#testMe test -pl core'
-    //  }
-    //}
+    stage('Regression Test') {
+      steps {
+        sh 'mvn -Dtest=TrackerTest#testMe test -pl core'
+      }
+    }
 
     //stage('test') {
     //  steps {

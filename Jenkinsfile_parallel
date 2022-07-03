@@ -19,6 +19,9 @@ pipeline {
                     }
                 }
 
+        stage('Unit, Regression and Integration') {
+            parallel {
+
                 stage('unit Test') {
                                 steps {
                                             sh 'mvn -Dtest=TrackerTest#testMe test -pl core'
@@ -34,6 +37,8 @@ pipeline {
                                             sh 'mvn test'
                                             }
                                     }
+                         }
+                 }
                  stage('Result') {
                                 steps {
                                             echo 'This will display Result'

@@ -37,11 +37,11 @@ pipeline {
 
 
 
-    //stage('package') {
-    //  steps {
-    //    sh 'mvn package'
-    //  }
-    //}
+    stage('package') {
+      steps {
+        sh 'mvn package'
+      }
+   }
 
   }
 

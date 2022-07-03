@@ -23,11 +23,19 @@ pipeline {
       }
     }
 
-    stage('Integration Test') {
+    stage('Regression Test') {
       steps {
         sh 'mvn -Dtest=TrackerTest test -pl core'
      }
     }
+
+     stage('Integration Test') {
+          steps {
+            sh 'mvn test'
+         }
+        }
+
+
 
     //stage('package') {
     //  steps {

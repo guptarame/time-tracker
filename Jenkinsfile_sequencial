@@ -35,13 +35,33 @@ pipeline {
          }
         }
 
-
+stage('Result') {
+                    steps {
+                                        echo 'This will display Result'
+                                        junit '**/*.xml'
+                          }
+                        }
 
     stage('package') {
       steps {
         sh 'mvn package'
       }
    }
+
+ stage('Upload The Binary_War') {
+      steps {
+        echo 'Upload The Binary'
+      }
+   }
+
+ stage('Deploy The Binary_War') {
+      steps {
+        echo 'Deploy The Binary'
+      }
+   }
+
+
+
 
   }
 

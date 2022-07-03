@@ -19,16 +19,16 @@ pipeline {
                     }
                 }
 
-        stage('Unit, Regression and Integration') {
+        stage('Unit and Regression') {
             parallel {
                 stage('unit Test') {
                                 steps {
-                                            sh 'mvn -Dtest=TrackerTest#testMe test -pl core'
+                                            sh 'mvn -Dtest=TrackerCoreConfigTest#testMe test -pl core'
                                        }
                                     }
                 stage('Regression Test') {
                                 steps {
-                                            sh 'mvn -Dtest=TrackerCoreConfigTest#testMe test -pl core'
+                                            sh 'mvn -Dtest=TrackerTest test -pl core'
                                        }
                                     }
                         }

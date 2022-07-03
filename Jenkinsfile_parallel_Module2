@@ -45,6 +45,7 @@ pipeline {
                 stage('package') {
                                 steps {
                                             sh 'mvn package'
+                                            archiveArtifacts artifacts: '**/*.war', followSymlinks: false
                                       }
                                 }
                 stage('Upload The Binary_War') {

@@ -61,7 +61,7 @@ pipeline {
 
 stage('slack notification') {
                                 steps {
-                                           slackSend channel: '#cicd_new', color: '#439FE0', message: 'hi buddy. it is build success. thanks!', teamDomain: 'abc-dzz3056', tokenCredentialId: 'id_new_cicd_new'
+                                           slackSend channel: '#cicd_new', message: 'Hi Buddy, Build is success !', teamDomain: 'abc-dzz3056', tokenCredentialId: 'idtext_of_cicd_new'
                                        }
                                  }
 

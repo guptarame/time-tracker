@@ -52,7 +52,7 @@ pipeline {
                 stage('Static analysis using warning plugin') {
                                 steps {
                                             echo 'this will run static analysis'
-                                            recordIssues(tools: [checkStyle(), findBugs(useRankAsPriority: true), pmdParser()])
+                                            recordIssues healthy: 20, qualityGates: [[threshold: 100, type: 'TOTAL', unstable: false], [threshold: 40, type: 'TOTAL', unstable: false]], tools: [checkStyle(), pmdParser(), findBugs(useRankAsPriority: true)], unhealthy: 80
                                       }
                                 }
 

@@ -6,7 +6,7 @@ pipeline {
       stages {
                 stage('build') {
                                 steps {
-                                            git branch: 'master', credentialsId: 'c1e9eb83-a953-4914-a540-76e5818897c0', url: 'https://github.com/guptarame/time-tracker.git'
+                                            git branch: 'myself', credentialsId: 'c1e9eb83-a953-4914-a540-76e5818897c0', url: 'https://github.com/guptarame/time-tracker.git'
                                             }
                                 }
                 stage('package') {

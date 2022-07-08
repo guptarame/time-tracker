@@ -5,7 +5,7 @@ pipeline {
                }
       stages {
          stage('Smoke Tests') {
-            parallel {
+
                 stage('build') {
                                 steps {
                                             git branch: 'myself', credentialsId: '672490ed-2c07-47e8-b818-6cca8c726d21', url: 'https://github.com/guptarame/time-tracker.git'
@@ -17,10 +17,9 @@ pipeline {
                                        }
                                 }
                     }
-                }
 
         stage('Node1') {
-            parallel {
+
                  stage('Reports') {
                                                 steps {
                                                             echo 'This will display Result'
@@ -33,7 +32,7 @@ pipeline {
                                        }
                                     }
                         }
-                 }
+
 
                  stage('Integration Test') {
                                 steps {

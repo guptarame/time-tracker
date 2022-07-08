@@ -1,0 +1,63 @@
+pipeline {
+  agent any
+        tools {
+                  maven "MAVEN_HOME"
+               }
+      stages {
+         stage('Smoke Tests') {
+            parallel {
+                stage('build') {
+                                steps {
+                                            git branch: 'myself', credentialsId: '5b9319da-8c4f-4392-8560-98d63bbc8bfc', url: 'https://github.com/guptarame/time-tracker.git'
+                                       }
+                                }
+                stage('Compile') {
+                                steps {
+                                            sh 'mvn compile'
+                                       }
+                                }
+                    }
+                }
+
+        stage('Node1') {
+            parallel {
+                 stage('Reports') {
+                                                steps {
+                                                            echo 'This will display Result'
+                                                            junit '**/*.xml'
+                                                       }
+                                   }
+                stage('Regression Test') {
+                                steps {
+                                            sh 'mvn -Dtest=TrackerTest test -pl core'
+                                       }
+                                    }
+                        }
+                 }
+
+                 stage('Integration Test') {
+                                steps {
+                                            sh 'mvn test'
+                                            }
+                                    }
+
+
+                stage('package') {
+                                steps {
+                                            sh 'mvn package'
+                                            archiveArtifacts artifacts: '**/*.war', followSymlinks: false
+                                      }
+                                }
+                stage('Upload The Binary War on nexus') {
+                                steps {
+                                           nexusPublisher nexusInstanceId: 'nexus3', nexusRepositoryId: 'Jenkins-ci-maven-nexus-repo', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: 'web/target/time-tracker-web-0.5.0-SNAPSHOT.war']], mavenCoordinate: [artifactId: 'wenapp', groupId: 'com.mycompany', packaging: 'war', version: '4.0']]]
+                                       }
+                                }
+                stage('Deploy The Binary_War ') {
+                                steps {
+                                            echo 'Deploy The Binary'
+                                       }
+                                 }
+
+  }
+}

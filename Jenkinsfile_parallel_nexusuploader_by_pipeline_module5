@@ -9,9 +9,21 @@ pipeline {
                                             git branch: 'myself', credentialsId: 'c1e9eb83-a953-4914-a540-76e5818897c0', url: 'https://github.com/guptarame/time-tracker.git'
                                             }
                                 }
-                stage('package') {
+
+               stage('compile') {
+                                               steps {
+                                                           sh 'mvn compile'
+                                                      }
+                                 }
+
+               stage('Test') {
+                                                              steps {
+                                                                          sh 'mvn test'
+                                                                     }
+                              }
+               stage('package') {
                                 steps {
-                                            sh 'mvn clean package'
+                                            sh 'mvn package'
                                             archiveArtifacts artifacts: '**/*.war', followSymlinks: false
                                       }
                                 }

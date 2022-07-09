@@ -37,7 +37,7 @@ pipeline {
                                 }
                 stage('package') {
                                 steps {
-                                            sh 'mvn package'
+                                            bat 'mvn package'
                                             archiveArtifacts artifacts: '**/*.war', followSymlinks: false
                                       }
                                 }

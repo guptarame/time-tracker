@@ -29,7 +29,7 @@ pipeline {
                                 }
                 stage('Upload The Binary War on nexus') {
                                 steps {
-                                          nexusPublisher nexusInstanceId: 'nexus3', nexusRepositoryId: 'Jenkins-ci-maven-nexus-repo', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: 'web/target/time-tracker-web-0.5.0-SNAPSHOT.war']], mavenCoordinate: [artifactId: 'webapp', groupId: 'com.mycompany', packaging: 'war', version: '7.0']]]
+                                          nexusPublisher nexusInstanceId: 'nexus3', nexusRepositoryId: 'Jenkins-ci-maven-nexus-repo', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: 'web/target/time-tracker-web-0.5.0-SNAPSHOT.war']], mavenCoordinate: [artifactId: 'webapp', groupId: 'com.mycompany', packaging: 'war', version: '8.0']]]
                                        }
                                 }
                 stage('Deploy The Binary_War ') {

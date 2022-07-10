@@ -32,9 +32,11 @@ pipeline {
                                           nexusPublisher nexusInstanceId: 'nexus3', nexusRepositoryId: 'Jenkins-ci-maven-nexus-repo', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: 'web/target/time-tracker-web-0.5.0-SNAPSHOT.war']], mavenCoordinate: [artifactId: 'webapp', groupId: 'com.mycompany', packaging: 'war', version: '8.0']]]
                                        }
                                 }
-                stage('Deploy The Binary_War ') {
+                stage('download war file') {
                                 steps {
-                                            echo 'Deploy The Binary'
+
+                                           bat 'wget --user=admin --password=admin123 http://127.0.0.1:8081/repository/Jenkins-ci-maven-nexus-repo/com/mycompany/webapp/5.0/webapp-5.0.war'
+
                                        }
                                  }
   }

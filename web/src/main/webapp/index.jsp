@@ -8,10 +8,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>A Very Super Simple Example Webpage-123456789</title>
+    <title>A Very Super Simple Example Webpage</title>
 </head>
 <body>
-  <h1>A Very Super Simple Example Web Page</h1>
+  <h1>A Very Super Simple Example Web Page-123456789</h1>
   <p>
     This is a very simple example web page on a JSP. Changes were re-deployed to Tomcat from a Jenkins Server.
   </p>

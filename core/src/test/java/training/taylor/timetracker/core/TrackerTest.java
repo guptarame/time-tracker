@@ -39,6 +39,7 @@ public class TrackerTest {
     public void testAnotherEntry3() {
         TimeEntry entry = new TimeEntry();
         entry.setDescription("Entry Test");
+        System.out.println("Entry Set");
         entry.setRate(84.0f);
         entry.setTime(7);
         tracker.add(entry);

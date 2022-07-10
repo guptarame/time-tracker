@@ -29,13 +29,13 @@ pipeline {
                                 }
                 stage('Upload The Binary War on nexus') {
                                 steps {
-                                          nexusPublisher nexusInstanceId: 'nexus3', nexusRepositoryId: 'Jenkins-ci-maven-nexus-repo', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: 'web/target/time-tracker-web-0.5.0-SNAPSHOT.war']], mavenCoordinate: [artifactId: 'webapp', groupId: 'com.mycompany', packaging: 'war', version: '8.0']]]
+                                          nexusPublisher nexusInstanceId: 'nexus3', nexusRepositoryId: 'Jenkins-ci-maven-nexus-repo', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: 'web/target/time-tracker-web-0.5.0-SNAPSHOT.war']], mavenCoordinate: [artifactId: 'webapp', groupId: 'com.mycompany', packaging: 'war', version: '5.0']]]
                                        }
                                 }
                 stage('download war file') {
                                 steps {
 
-                                           bat 'curl -X GET https://admin:admin123@127.0.0.1:8081/repository/Jenkins-ci-maven-nexus-repo/com/mycompany/webapp/5.0/webapp-5.0.war'
+                                           bat 'curl -X GET -u admin:admin123 "http://127.0.0.1:8081/repository/Jenkins-ci-maven-nexus-repo/com/mycompany/webapp/5.0/webapp-5.0.war" -O'
 
                                        }
                                  }

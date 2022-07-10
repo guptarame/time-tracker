@@ -35,7 +35,7 @@ pipeline {
                 stage('download war file') {
                                 steps {
 
-                                           bat 'wget --user=admin --password=admin123 http://127.0.0.1:8081/repository/Jenkins-ci-maven-nexus-repo/com/mycompany/webapp/5.0/webapp-5.0.war'
+                                           bat 'curl --user=admin --password=admin123 http://127.0.0.1:8081/repository/Jenkins-ci-maven-nexus-repo/com/mycompany/webapp/5.0/webapp-5.0.war'
 
                                        }
                                  }

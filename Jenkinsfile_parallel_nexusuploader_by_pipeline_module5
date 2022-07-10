@@ -40,13 +40,7 @@ pipeline {
                                        }
                                  }
                  stage('deploy on tomcat') {
-                                  steps {
-
-                                             bat 'deploy adapters: [tomcat9(credentialsId: 'admin2', path: '', url: 'http://192.168.29.15:8082/')], contextPath: null, war: '**/*.war''
-
-                                         }
+                                  steps { bat 'deploy adapters: [tomcat9(credentialsId: 'admin2', path: '', url: 'http://192.168.29.15:8082/')], contextPath: null, war: '**/*.war' ' }
                                    }
-
-      }
+                                   }
   }
-

@@ -5,16 +5,16 @@ node{
    }
    stage('Compile-Package'){
       // Get maven home path
-    //  def mvnHome =  tool name: 'MAVEN_HOME', type: 'maven'
+      def mvnHome =  tool name: 'MAVEN_HOME', type: 'maven'
       bat 'mvn package'
    }
 
    stage('SonarQube Analysis') {
-      //  def mvnHome =  tool name: 'MAVEN_HOME', type: 'maven'
-     //   withSonarQubeEnv('mysonarqube') {
-      //    sh "${mvnHome}/bin/mvn sonar:sonar"
+        def mvnHome =  tool name: 'MAVEN_HOME', type: 'maven'
+        withSonarQubeEnv('mysonarqube') {
+         bat "${mvnHome}/bin/mvn sonar:sonar"
 
-         bat 'mvn clean verify sonar:sonar\-Dsonar.projectKey=my-java-maven-sonar\-Dsonar.host.url=http://localhost:9000\-Dsonar.login=sqp_3eca0b3898cac3ae995fd322ce04360a6d04bf9c'
+       //  bat 'mvn clean verify sonar:sonar\-Dsonar.projectKey=my-java-maven-sonar\-Dsonar.host.url=http://localhost:9000\-Dsonar.login=sqp_3eca0b3898cac3ae995fd322ce04360a6d04bf9c'
 
 
         }

@@ -1,7 +1,7 @@
 node{
 // demo
    stage('SCM Checkout'){
-     git branch: 'myself', url: 'https://github.com/guptarame/time-tracker.git'
+     git branch: 'myself', credentialsId: 'c1e9eb83-a953-4914-a540-76e5818897c0', url: 'https://github.com/guptarame/time-tracker.git'
    }
    stage('Compile-Package'){
       // Get maven home path

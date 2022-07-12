@@ -1,50 +1,11 @@
-pipeline {
-  agent any
-  stages {
-    stage('build') {
-      agent any
-      steps {
-        git(url: 'https://github.com/guptarame/time-tracker.git', branch: 'master')
-      }
-    }
-
-    stage('Compile') {
-      steps {
-        sh 'mvn compile'
-      }
-    }
-
-    stage('test me') {
-      parallel {
-        stage('test me') {
-          steps {
-            sh 'mvn -Dtest=TrackerTest test -pl core'
-          }
-        }
-
-        stage('test me core config') {
-          steps {
-            sh 'mvn -Dtest=TrackerCoreConfigTest#testMe test -pl core'
-          }
-        }
-
-      }
-    }
-
-    stage('test') {
-      steps {
-        sh 'mvn test'
-      }
-    }
-
-    stage('package') {
-      steps {
-        sh 'mvn package'
-      }
-    }
-
+node {
+  stage('SCM') {
+    checkout scm
   }
-  environment {
-    maven = 'maven3.0.5'
+  stage('SonarQube Analysis') {
+    def mvn = tool 'MAVEN_HOME';
+    withSonarQubeEnv() {
+      sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=my-java-maven-sonar"
+    }
   }
 }

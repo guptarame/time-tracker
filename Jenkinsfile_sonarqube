@@ -14,7 +14,7 @@ node{
       //  withSonarQubeEnv('mysonarqube') {
       //   bat "${mvnHome}/bin/mvn sonar:sonar"
 
-         bat 'mvn clean verify sonar:sonar\-Dsonar.projectKey=my-java-maven-sonar\-Dsonar.host.url=http://localhost:9000\-Dsonar.login=sqp_3eca0b3898cac3ae995fd322ce04360a6d04bf9c'
+         bat 'mvn clean verify sonar:sonar \ -Dsonar.projectKey=my-java-maven-sonar \ -Dsonar.host.url=http://localhost:9000 \ -Dsonar.login=sqp_3eca0b3898cac3ae995fd322ce04360a6d04bf9c'
 
 
         }

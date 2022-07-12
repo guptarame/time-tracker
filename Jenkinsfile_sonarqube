@@ -1,27 +1,11 @@
-node{
-// demo
-   stage('SCM Checkout'){
-     git branch: 'myself', credentialsId: 'c1e9eb83-a953-4914-a540-76e5818897c0', url: 'https://github.com/guptarame/time-tracker.git'
-   }
-   stage('Compile-Package'){
-      // Get maven home path
-      def mvnHome =  tool name: 'MAVEN_HOME', type: 'maven'
-      bat 'mvn package'
-   }
-
-   stage('SonarQube Analysis') {
-      //  def mvnHome =  tool name: 'MAVEN_HOME', type: 'maven'
-      //  withSonarQubeEnv('mysonarqube') {
-      //   bat "${mvnHome}/bin/mvn sonar:sonar"
-
-         bat 'mvn clean verify sonar:sonar \ -Dsonar.projectKey=my-java-maven-sonar \ -Dsonar.host.url=http://localhost:9000 \ -Dsonar.login=sqp_3eca0b3898cac3ae995fd322ce04360a6d04bf9c'
-
-
-        }
+node {
+  stage('SCM') {
+    checkout scm
+  }
+  stage('SonarQube Analysis') {
+    def mvn = tool 'Default Maven';
+    withSonarQubeEnv() {
+      sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=my-java-maven-sonar"
     }
-
-
-
-
+  }
 }
-

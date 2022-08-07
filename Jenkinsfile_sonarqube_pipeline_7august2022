@@ -1,0 +1,70 @@
+pipeline {
+  agent any
+        tools {
+                  maven "MAVEN_HOME"
+               }
+      stages {
+                stage('build') {
+                                steps {
+                                            git branch: 'myself', credentialsId: 'gitcredentials', url: 'https://github.com/guptarame/time-tracker.git'
+                                            }
+                                }
+                stage('Compile') {
+                                steps {
+                                            bat 'mvn compile'
+                                       }
+                                }
+                stage('unit Test') {
+                                steps {
+                                            bat 'mvn -Dtest=TrackerTest#testMe test -pl core'
+                                       }
+                                    }
+                stage('Regression Test') {
+                                steps {
+                                            bat 'mvn -Dtest=TrackerTest test -pl core'
+                                       }
+                                    }
+                 stage('Integration Test') {
+                                steps {
+                                            bat 'mvn test'
+                                       }
+                                    }
+                 stage('Result') {
+                                steps {
+                                            echo 'This will display Result'
+                                            junit '**/*.xml'
+                                       }
+                                }
+                stage('package') {
+                                steps {
+                                            bat 'mvn package'
+                                            archiveArtifacts artifacts: '**/*.war', followSymlinks: false
+                                      }
+                                }
+                 stage('sonarqube Analysis') {
+                                                steps {
+                                                            withSonarQubeEnv(credentialsId: 'JenkinsSonarId', installationName: 'mysonarqube') {
+                                                                bat ''' \
+                                                                -Dsonar.projectKey=my-java-maven-sonar \
+                                                                -Dsonar.projectName= Time Tracker Project With Java Maven \
+                                                                -Dsonar.projectVersion=1.0
+                                                                -Dsonar.java.binaries=core/target/classes \
+                                                                -Dsonar.sources=core,web \
+                                                                -Dsonar.language=Java \
+                                                                -Dsonar.sourceEncoding=UTF-8 \
+                                                                '''
+                                                            }
+                                                      }
+                                                }
+                stage('Upload The Binary_War') {
+                                steps {
+                                            echo 'Upload The Binary'
+                                       }
+                                }
+                stage('Deploy The Binary_War') {
+                                steps {
+                                            echo 'Deploy The Binary'
+                                       }
+                                 }
+  }
+}

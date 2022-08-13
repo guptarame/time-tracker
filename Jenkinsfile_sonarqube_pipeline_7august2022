@@ -44,12 +44,24 @@ pipeline {
                  stage('sonarqube Analysis') {
                                                 steps {
 
-                                                          withSonarQubeEnv('mysonarqube') {
-                                                                bat 'mvn clean package sonar:sonar'
-                                                              } // submitted SonarQube taskId is automatically attached to the pipeline context
+                                                        withSonarQubeEnv() {
+                                        def mvn = tool 'MAVEN_HOME';
+                                        bat "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=my-java-maven-sonar"
+                                            }
 
 
+                                                     // def scannerHome = tool 'mysonarqube';
+                                                       //        withSonarQubeEnv("sonarqube-container") {
+                                                         //      sh "${tool("sonarqube")}/bin/sonar-scanner \
+                                                           //    -Dsonar.projectKey=test-node-js \
+                                                             //  -Dsonar.sources=. \
+                                                             //  -Dsonar.css.node=. \
+                                                            //   -Dsonar.host.url=http://your-ip-here:9000 \
+                                                           //    -Dsonar.login=your-generated-token-from-sonarqube-container
 
+                                                          //withSonarQubeEnv('mysonarqube') {
+                                                            //    bat 'mvn clean package sonar:sonar'
+                                                             // } // submitted SonarQube taskId is automatically attached to the pipeline context
 
                                                         //    def scannerHome = tool 'mysonarqube';
                                                         //        withSonarQubeEnv('sonarqube') {
@@ -59,10 +71,6 @@ pipeline {
                                                         //         -D sonar.projectKey=my-java-maven-sonar \
                                                         //        -D sonar.exclusions=vendor/**,resources/**,**/*.java \
                                                         //       -D sonar.host.url=http:// 192.168.29.15:9000/"
-
-
-
-
 
                                                          //   withSonarQubeEnv(credentialsId: 'jenkinssonarconnectionid', installationName: 'mysonarqube') {
                                                          //       bat ''' \

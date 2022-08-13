@@ -42,7 +42,7 @@ pipeline {
                                       }
                                 }
                  stage('sonarqube Analysis') {
-                                                steps {
+                                              //  steps {
 
                                                             def scannerHome = tool 'mysonarqube';
                                                                 withSonarQubeEnv('sonarqube') {
@@ -68,7 +68,7 @@ pipeline {
                                                           //      -Dsonar.sourceEncoding=UTF-8 \
                                                            //     '''
                                                             }
-                                                      }
+                                                  //    }
                                                 }
                 stage('Upload The Binary_War') {
                                 steps {

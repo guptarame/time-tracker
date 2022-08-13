@@ -44,7 +44,7 @@ pipeline {
                  stage('sonarqube Analysis') {
                                                 steps {
                                                             withSonarQubeEnv(credentialsId: 'jenkinssonarconnectionid', installationName: 'mysonarqube') {
-                                                                bat ' \
+                                                                bat ''' \
                                                                 -Dsonar.projectKey=my-java-maven-sonar \
                                                                 -Dsonar.projectName= Time Tracker Project With Java Maven \
                                                                 -Dsonar.projectVersion=1.0
@@ -52,7 +52,7 @@ pipeline {
                                                                 -Dsonar.sources=core,web \
                                                                 -Dsonar.language=Java \
                                                                 -Dsonar.sourceEncoding=UTF-8 \
-                                                                '
+                                                                '''
                                                             }
                                                       }
                                                 }

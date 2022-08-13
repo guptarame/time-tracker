@@ -42,11 +42,11 @@ pipeline {
                                       }
                                 }
                  stage('sonarqube Analysis') {
-                                              //  steps {
+                                                steps {
 
                                                             def scannerHome = tool 'mysonarqube';
                                                                 withSonarQubeEnv('sonarqube') {
-                                                                  sh "${scannerHome}/bin/sonar-scanner \
+                                                                  bat "${scannerHome}/bin/sonar-scanner \
                                                                   -D sonar.login=admin \
                                                                   -D sonar.password=admin123 \
                                                                   -D sonar.projectKey=my-java-maven-sonar \
@@ -68,7 +68,7 @@ pipeline {
                                                           //      -Dsonar.sourceEncoding=UTF-8 \
                                                            //     '''
                                                             }
-                                                  //    }
+                                                     }
                                                 }
                 stage('Upload The Binary_War') {
                                 steps {

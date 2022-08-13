@@ -44,14 +44,21 @@ pipeline {
                  stage('sonarqube Analysis') {
                                                 steps {
 
-                                                            def scannerHome = tool 'mysonarqube';
-                                                                withSonarQubeEnv('sonarqube') {
-                                                                  bat "${scannerHome}/bin/sonar-scanner \
-                                                                  -D sonar.login=admin \
-                                                                  -D sonar.password=admin123 \
-                                                                  -D sonar.projectKey=my-java-maven-sonar \
-                                                                  -D sonar.exclusions=vendor/**,resources/**,**/*.java \
-                                                                  -D sonar.host.url=http:// 192.168.29.15:9000/"
+                                                          withSonarQubeEnv('mysonarqube') {
+                                                                bat 'mvn clean package sonar:sonar'
+                                                              } // submitted SonarQube taskId is automatically attached to the pipeline context
+
+
+
+
+                                                        //    def scannerHome = tool 'mysonarqube';
+                                                        //        withSonarQubeEnv('sonarqube') {
+                                                        //          bat "${scannerHome}/bin/sonar-scanner \
+                                                        //         -D sonar.login=admin \
+                                                        //          -D sonar.password=admin123 \
+                                                        //         -D sonar.projectKey=my-java-maven-sonar \
+                                                        //        -D sonar.exclusions=vendor/**,resources/**,**/*.java \
+                                                        //       -D sonar.host.url=http:// 192.168.29.15:9000/"
 
 
 
@@ -67,7 +74,7 @@ pipeline {
                                                          //       -Dsonar.language=Java \
                                                           //      -Dsonar.sourceEncoding=UTF-8 \
                                                            //     '''
-                                                            }
+                                                          //  }
                                                      }
                                                 }
                 stage('Upload The Binary_War') {

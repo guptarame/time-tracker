@@ -1,5 +1,6 @@
 pipeline
     {
+
         agent any
             tools
             {
@@ -47,7 +48,7 @@ pipeline
                  stage('sonarqube Analysis')
                     {
                         steps {
-                                 def mavenHome = tool name: "Maven3.0.5"
+                                 def mavenHome = tool name: "MAVEN_HOME"
                                  withSonarQubeEnv('sonarintegration20')
                                  bat "${mavenHome}/bin/mvn sonar:sonar"
                                 }

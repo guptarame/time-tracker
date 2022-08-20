@@ -48,9 +48,9 @@ pipeline
                  stage('sonarqube Analysis')
                     {
                         steps {
-                                 def mavenHome = tool name: "MAVEN_HOME"
+                              //   def mavenHome = tool name: "MAVEN_HOME"
                                  withSonarQubeEnv('sonarintegration20')
-                                 bat "${mavenHome}/bin/mvn sonar:sonar"
+                                 bat "${maven}/bin/mvn sonar:sonar"
                                 }
                     }
                 stage('Upload The Binary_War')

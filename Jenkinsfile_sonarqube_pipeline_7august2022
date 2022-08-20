@@ -13,38 +13,6 @@ pipeline
                                             git branch: 'myself', credentialsId: 'gitcredentials', url: 'https://github.com/guptarame/time-tracker.git'
                                        }
                                 }
-                stage('Compile') {
-                                steps {
-                                            bat 'mvn compile'
-                                       }
-                                }
-                stage('unit Test') {
-                                steps {
-                                            bat 'mvn -Dtest=TrackerTest#testMe test -pl core'
-                                       }
-                                    }
-                stage('Regression Test') {
-                                steps {
-                                            bat 'mvn -Dtest=TrackerTest test -pl core'
-                                       }
-                                    }
-                 stage('Integration Test') {
-                                steps {
-                                            bat 'mvn test'
-                                       }
-                                    }
-                 stage('Result') {
-                                steps {
-                                            echo 'This will display Result'
-                                            junit '**/*.xml'
-                                       }
-                                }
-                stage('package') {
-                                steps {
-                                            bat 'mvn package'
-                                            archiveArtifacts artifacts: '**/*.war', followSymlinks: false
-                                      }
-                                }
                  stage('sonarqube Analysis')
                     {
                         steps {

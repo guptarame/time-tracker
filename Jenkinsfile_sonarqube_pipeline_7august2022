@@ -1,13 +1,16 @@
-pipeline {
-  agent any
-        tools {
+pipeline
+    {
+        agent any
+            tools
+            {
                   maven "MAVEN_HOME"
-               }
-      stages {
+             }
+           stages
+            {
                 stage('build') {
                                 steps {
                                             git branch: 'myself', credentialsId: 'gitcredentials', url: 'https://github.com/guptarame/time-tracker.git'
-                                            }
+                                       }
                                 }
                 stage('Compile') {
                                 steps {
@@ -41,23 +44,25 @@ pipeline {
                                             archiveArtifacts artifacts: '**/*.war', followSymlinks: false
                                       }
                                 }
-                 stage('sonarqube Analysis') {
-                                                steps {
-                                                        def mavenHome = tool name: "MAVEN_HOME"
-                                                        withSonarQubeEnv('sonarintegration20') {
-                                                        bat "${mavenHome}/bin/mvn sonar:sonar"
-
-                                                     }
-                                                }
-                stage('Upload The Binary_War') {
-                                steps {
-                                            echo 'Upload The Binary'
-                                       }
+                 stage('sonarqube Analysis')
+                    {
+                        steps {
+                                 def mavenHome = tool name: "MAVEN_HOME"
+                                 withSonarQubeEnv('sonarintegration20')
+                                 bat "${mavenHome}/bin/mvn sonar:sonar"
                                 }
-                stage('Deploy The Binary_War') {
-                                steps {
-                                            echo 'Deploy The Binary'
-                                       }
-                                 }
-  }
-}
+                    }
+                stage('Upload The Binary_War')
+                    {
+                        steps {
+                                            echo 'Upload The Binary'
+                              }
+                     }
+                stage('Deploy The Binary_War')
+                    {
+                         steps {
+                                           echo 'Deploy The Binary'
+                               }
+                    }
+            }
+        }

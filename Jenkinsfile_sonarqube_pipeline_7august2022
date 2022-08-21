@@ -24,7 +24,7 @@ pipeline
 
 
  stage('SonarQube analysis') {
-    def scannerHome = tool 'sonarintegration20';
+    def scannerHome = tool 'SonarScanner 2.14';
     withSonarQubeEnv('sonarintegration20') {
       sh "${scannerHome}/bin/sonar-scanner \
       -D sonar.login=admin \

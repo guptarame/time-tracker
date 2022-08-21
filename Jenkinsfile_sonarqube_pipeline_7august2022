@@ -13,14 +13,26 @@ pipeline
                                             git branch: 'myself', credentialsId: 'gitcredentials', url: 'https://github.com/guptarame/time-tracker.git'
                                        }
                                 }
-                 stage('sonarqube Analysis')
-                    {
-                         steps {
+             //    stage('sonarqube Analysis')
+              //      {
+               //          steps {
 
-                                withSonarQubeEnv('sonarintegration20') {
-                                bat 'mvn clean package sonar:sonar' }
-                                }
-                    }
+                //                withSonarQubeEnv('sonarintegration20') {
+                 //               bat 'mvn clean package sonar:sonar' }
+                  //              }
+                  //  }
+
+
+                    stage('Sonar') {
+                    			steps {
+                    				bat "mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.6.0.1398:sonar -Dsonar.host.url=http://localhost:9000"
+                    			}
+                    		}
+
+
+
+
+
              //   stage('Upload The Binary_War')
              //       {
              //           steps {

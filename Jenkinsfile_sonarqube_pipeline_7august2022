@@ -30,7 +30,7 @@ pipeline
     steps {
    // withSonarQubeEnv(credentialsId: 'gitcredentialsid20', installationName: 'sonarintegration20') {
     withSonarQubeEnv(credentialsId: 'id20', installationName: 'sonarintegration20') {
-         sh '''$SCANNER_HOME/bin/sonar-scanner \
+         bat '''$SCANNER_HOME/bin/sonar-scanner \
          -Dsonar.projectKey=my-java-maven-sonar \
          -Dsonar.projectName=Time Tracker Project With Java Maven \
          -Dsonar.sources=src/ \

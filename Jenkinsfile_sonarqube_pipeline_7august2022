@@ -17,8 +17,8 @@ pipeline
                     {
                          node {
 
-                                withSonarQubeEnv('sonarintegration20')
-                                bat 'mvn clean package sonar:sonar'
+                                withSonarQubeEnv('sonarintegration20') {
+                                bat 'mvn clean package sonar:sonar' }
                                 }
                     }
                 stage('Upload The Binary_War')

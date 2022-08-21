@@ -15,7 +15,7 @@ pipeline
                                 }
                  stage('sonarqube Analysis')
                     {
-                        steps {
+                         node {
 
                                 withSonarQubeEnv('sonarintegration20')
                                 bat 'mvn clean package sonar:sonar'

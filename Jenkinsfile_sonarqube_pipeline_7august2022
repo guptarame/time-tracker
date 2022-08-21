@@ -21,17 +21,17 @@ pipeline
                                 bat 'mvn clean package sonar:sonar' }
                                 }
                     }
-                stage('Upload The Binary_War')
-                    {
-                        steps {
-                                            echo 'Upload The Binary'
-                              }
-                     }
-                stage('Deploy The Binary_War')
-                    {
-                         steps {
-                                           echo 'Deploy The Binary'
-                               }
-                    }
+             //   stage('Upload The Binary_War')
+             //       {
+             //           steps {
+             //                               echo 'Upload The Binary'
+             //                }
+             //        }
+              //  stage('Deploy The Binary_War')
+               //     {
+                //         steps {
+                 //                          echo 'Deploy The Binary'
+                  //             }
+                  //  }
             }
         }

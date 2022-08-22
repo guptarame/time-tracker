@@ -17,7 +17,7 @@ pipeline
                    {
                          steps {
 
-                                withSonarQubeEnv('sonarqubeserver22august) {
+                                withSonarQubeEnv('sonarqubeserver22august') {
                                bat 'mvn clean package sonar:sonar' }
                               }
                   }

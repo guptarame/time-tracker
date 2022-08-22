@@ -29,16 +29,15 @@ pipeline
     }
     steps {
 
-    withSonarQubeEnv(credentialsId: 'id20', installationName: 'sonarintegration20') {
-   //      bat '''$SCANNER_HOME/bin/sonar-scanner \
-     //    -Dsonar.projectKey=my-java-maven-sonar \
-       //  -Dsonar.projectName=Time Tracker Project With Java Maven \
-       //  -Dsonar.sources=src/ \
-        // -Dsonar.java.binaries=target/classes/ \
-        // -Dsonar.exclusions=src/test/java/****/*.java \
-       //  -Dsonar.java.libraries=/var/lib/jenkins/.m2/**/*.jar \
-       //  -Dsonar.projectVersion=${BUILD_NUMBER}-${GIT_COMMIT_SHORT}'''
-bat 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.6.0.1398:sonar'
+    withSonarQubeEnv(credentialsId: 'id20', installationName: 'sonarqubeserver22august') {
+         bat '''$SCANNER_HOME/bin/sonar-scanner \
+         -Dsonar.projectKey=my-java-maven-sonar \
+         -Dsonar.projectName=Time Tracker Project With Java Maven \
+         -Dsonar.sources=src/ \
+         -Dsonar.java.binaries=target/classes/ \
+         -Dsonar.exclusions=src/test/java/****/*.java \
+         -Dsonar.java.libraries=/var/lib/jenkins/.m2/**/*.jar \
+         -Dsonar.projectVersion=${BUILD_NUMBER}-${GIT_COMMIT_SHORT}'''
        }
      }
 }

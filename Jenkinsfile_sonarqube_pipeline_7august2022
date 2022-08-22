@@ -13,14 +13,14 @@ pipeline
                                             git branch: 'myself', credentialsId: 'gitcredentials', url: 'https://github.com/guptarame/time-tracker.git'
                                        }
                                 }
-             //    stage('sonarqube Analysis')
-              //      {
-               //          steps {
+                 stage('sonarqube Analysis')
+                   {
+                         steps {
 
-                //                withSonarQubeEnv('sonarintegration20') {
-                 //               bat 'mvn clean package sonar:sonar' }
-                  //              }
-                  //  }
+                                withSonarQubeEnv('sonarqubeserver22august) {
+                               bat 'mvn clean package sonar:sonar' }
+                              }
+                  }
 
 
 // stage('SonarQube analysis') {
@@ -45,17 +45,17 @@ pipeline
 
 
 
- stage('SonarQube analysis') {
-    def scannerHome = tool 'SonarScanner 2.14';
-    withSonarQubeEnv('sonarqubeserver22august') {
-      sh "${scannerHome}/bin/sonar-scanner \
-      -D sonar.login=admin \
-      -D sonar.password=admin123 \
-      -D sonar.projectKey=my-java-maven-sonar \
-      -D sonar.exclusions=vendor/**,resources/**,**/*.java \
-     -D sonar.host.url=http://192.168.29.15:9000/"
-   }
-  }
+// stage('SonarQube analysis') {
+ //   def scannerHome = tool 'SonarScanner 2.14';
+  //  withSonarQubeEnv('sonarqubeserver22august') {
+   //   sh "${scannerHome}/bin/sonar-scanner \
+    //  -D sonar.login=admin \
+    //  -D sonar.password=admin123 \
+     // -D sonar.projectKey=my-java-maven-sonar \
+    //  -D sonar.exclusions=vendor/**,resources/**,**/*.java \
+   //  -D sonar.host.url=http://192.168.29.15:9000/"
+  // }
+ // }
 
 
 

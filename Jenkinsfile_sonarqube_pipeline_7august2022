@@ -23,39 +23,39 @@ pipeline
                   //  }
 
 
- stage('SonarQube analysis') {
-    environment {
-      SCANNER_HOME = tool 'SonarQubeScanner'
-    }
-    steps {
-
-    withSonarQubeEnv(credentialsId: 'id20', installationName: 'sonarqubeserver22august') {
-         bat '''$SCANNER_HOME/bin/sonar-scanner \
-         -Dsonar.projectKey=my-java-maven-sonar \
-         -Dsonar.projectName=Time Tracker Project With Java Maven \
-         -Dsonar.sources=src/ \
-         -Dsonar.java.binaries=target/classes/ \
-         -Dsonar.exclusions=src/test/java/****/*.java \
-         -Dsonar.java.libraries=/var/lib/jenkins/.m2/**/*.jar \
-         -Dsonar.projectVersion=${BUILD_NUMBER}-${GIT_COMMIT_SHORT}'''
-       }
-     }
-}
-
-
-
-
 // stage('SonarQube analysis') {
-//    def scannerHome = tool 'SonarScanner 2.14';
-//    withSonarQubeEnv('sonarintegration20') {
-//      sh "${scannerHome}/bin/sonar-scanner \
-//      -D sonar.login=admin \
-//      -D sonar.password=admin123 \
-//      -D sonar.projectKey=my-java-maven-sonar \
-//      -D sonar.exclusions=vendor/**,resources/**,**/*.java \
-//     -D sonar.host.url=http://192.168.29.15:9000/"
-//   }
-//  }
+ //   environment {
+ //     SCANNER_HOME = tool 'SonarQubeScanner'
+ //   }
+ //   steps {
+
+  //  withSonarQubeEnv(credentialsId: 'id20', installationName: 'sonarqubeserver22august') {
+   //      bat '''$SCANNER_HOME/bin/sonar-scanner \
+    //     -Dsonar.projectKey=my-java-maven-sonar \
+     //    -Dsonar.projectName=Time Tracker Project With Java Maven \
+      //   -Dsonar.sources=src/ \
+       //  -Dsonar.java.binaries=target/classes/ \
+       //  -Dsonar.exclusions=src/test/java/****/*.java \
+       //  -Dsonar.java.libraries=/var/lib/jenkins/.m2/**/*.jar \
+      //   -Dsonar.projectVersion=${BUILD_NUMBER}-${GIT_COMMIT_SHORT}'''
+     //  }
+    // }
+//}
+
+
+
+
+ stage('SonarQube analysis') {
+    def scannerHome = tool 'SonarScanner 2.14';
+    withSonarQubeEnv('sonarqubeserver22august') {
+      sh "${scannerHome}/bin/sonar-scanner \
+      -D sonar.login=admin \
+      -D sonar.password=admin123 \
+      -D sonar.projectKey=my-java-maven-sonar \
+      -D sonar.exclusions=vendor/**,resources/**,**/*.java \
+     -D sonar.host.url=http://192.168.29.15:9000/"
+   }
+  }
 
 
 
